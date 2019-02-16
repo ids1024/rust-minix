@@ -1,0 +1,9 @@
+[submodule "rust"]
+	path = rust
+	url = https://github.com/ids1024/rust
+[submodule "libc"]
+	path = libc
+	url = https://github.com/ids1024/libc
+[submodule "xargo"]
+	path = xargo
+	url = https://github.com/ids1024/xargo/

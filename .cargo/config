@@ -1,0 +1,2 @@
+[target.i586-unknown-minix]
+linker = "i586-elf32-minix-clang"

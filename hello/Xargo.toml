@@ -1,0 +1,5 @@
+[dependencies]
+std = {}
+
+[patch.crates-io]
+libc = { path="../libc", default-features = false, features = ['rustc-dep-of-std'] }
