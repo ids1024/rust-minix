@@ -13,6 +13,7 @@ XARGO="rustup run nightly cargo run --manifest-path $PWD/xargo/Cargo.toml --"
 export XARGO_RUST_SRC=$PWD/rust/src
 export XARGO_HOME=$PWD/.xargo
 export RUST_TARGET_PATH=$PWD
+export RUST_MINIX_DIR=$PWD
 export PATH=$PWD/bin:$MINIX_TOOLDIR/bin:$PATH
 export CC_i586_unknown_minix=i586-elf32-minix-clang
 export AR_i586_unknown_minix=i586-elf32-minix-ar

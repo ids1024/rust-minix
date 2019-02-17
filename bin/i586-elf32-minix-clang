@@ -1,0 +1,4 @@
+#!/bin/sh
+clang=$MINIX_TOOLDIR/bin/i586-elf32-minix-clang
+pth_dir=$RUST_MINIX_DIR/deps/pth
+"$clang" --sysroot="$MINIX_SYSROOT" -L$pth_dir/lib -isystem $pth_dir/include $@  -Wno-error=unused-command-line-argument
