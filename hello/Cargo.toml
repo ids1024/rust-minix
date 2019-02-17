@@ -4,10 +4,4 @@ version = "0.1.0"
 authors = ["Ian Douglas Scott <ian@iandouglasscott.com>"]
 edition = "2018"
 
-[profile.release]
-panic = "abort"
-
-[profile.dev]
-panic = "abort"
-
 [dependencies]

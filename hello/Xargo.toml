@@ -1,5 +1,5 @@
-[dependencies]
-std = {}
+[dependencies.std]
+features = ["panic-unwind"]
 
 [patch.crates-io]
 libc = { path="../libc", default-features = false, features = ['rustc-dep-of-std'] }
