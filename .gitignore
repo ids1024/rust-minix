@@ -1,2 +1,4 @@
 hello/target
 Cargo.lock
+.cargo/config
+.xargo

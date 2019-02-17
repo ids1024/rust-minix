@@ -13,11 +13,6 @@
   "llvm-target": "i586-unknown-minix",
   "max-atomic-width": 64,
   "os": "minix",
-  "pre-link-args": {
-    "gcc": [
-      "-m32"
-    ]
-  },
   "relro-level": "full",
   "stack-probes": true,
   "target-c-int-width": "32",
