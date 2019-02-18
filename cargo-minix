@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -e
+
+if [ -z "$MINIX_TOOLDIR" ]; then
+	echo "\$MINIX_TOOLDIR must be set."
+	exit 1
+fi
+
+if [ -z "$MINIX_SYSROOT" ]; then
+	echo "\$MINIX_SYSROOT must be set."
+	exit 1
+fi
+
+export RUST_MINIX_DIR=$(dirname $(which $0))
+export RUST_TARGET_PATH=$RUST_MINIX_DIR
+export PATH=$RUST_MINIX_DIR/bin:$MINIX_TOOLDIR/bin:$PATH
+export CC_i586_unknown_minix=i586-elf32-minix-clang
+export AR_i586_unknown_minix=i586-elf32-minix-ar
+
+cargo $@

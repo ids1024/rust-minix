@@ -1,5 +1,2 @@
-hello/target
-Cargo.lock
 deps
-target
-.cargo/config
+i586-unknown-minix.json

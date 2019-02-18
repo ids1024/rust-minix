@@ -19,5 +19,6 @@
   "target-endian": "little",
   "target-family": "unix",
   "target-pointer-width": "32",
-  "vendor": "unknown"
+  "vendor": "unknown",
+  "rustflags": "-L%DEPDIR%"
 }
