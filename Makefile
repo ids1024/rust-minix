@@ -24,7 +24,7 @@ libc-test: .cargo/config
 	cd libc/libc-test && cargo test --target i586-unknown-minix --no-run
 
 update-submodules:
-	git submodule update --init rust libc xargo
+	git submodule update --init rust libc
 	git -C rust submodule update --init src/stdsimd
 
 clean:
