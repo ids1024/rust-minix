@@ -17,7 +17,7 @@ export AR_i586_unknown_minix := i586-elf32-minix-ar
 all: .cargo/config
 
 clean:
-	rm -rf deps rust/target i586-unknown-minix.json
+	rm -rf deps rust/target .cargo
 
 update-submodules:
 	git submodule update --init rust libc
