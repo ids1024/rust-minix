@@ -3,6 +3,10 @@ WIP Port of Rust's std to Minix
 
 For the moment, this is set up to allow cross compiling from Linux. Other systems with Rust compiler may work, but are not tested.
 
+`make` is used to build a copy of `std` targeting Minix. Then the `cargo-minix` script can be used instead of cargo to set all the necessary environmental variables so that the `i586-unknown-minix` target and `std` is available.
+
+`cargo-minix` should either be run in a subdirectory of this repo, or the `.cargo` directory created by `make` must be copied.
+
 ```bash
 export MINIX_TOOLDIR=~/minix/obj.i386/tooldir.Linux-4.20.1-arch1-1-ARCH-x86_64
 export MINIX_ROOT=~/minix/obj.i386/destdir.i386
