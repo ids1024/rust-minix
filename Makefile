@@ -22,10 +22,10 @@ LIBS := deps/pth/lib/libpthread.so
 
 all: hello libc-test
 
-hello: $(LIBS) $(XARGO)
+hello: $(LIBS) $(XARGO) hello/Xargo.toml
 	cd hello && $(XARGO) build --target i586-unknown-minix
 
-libc-test: $(LIBS) $(XARGO)
+libc-test: $(LIBS) $(XARGO) libc/libc-test/Xargo.toml
 	cd libc/libc-test && $(XARGO) test --target i586-unknown-minix --no-run
 
 update-submodules:
@@ -34,6 +34,12 @@ update-submodules:
 
 clean:
 	rm -rf .xargo libc/target hello/target xargo/target deps
+
+%/Xargo.toml: Xargo.toml
+	cp $< $@
+
+Xargo.toml: Xargo.toml.in
+	sed "s|LIBC|$(PWD)/libc|" $< > $@
 
 $(XARGO):
 	cd xargo && cargo build --release
