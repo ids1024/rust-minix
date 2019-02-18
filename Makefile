@@ -7,8 +7,6 @@ $(error MINIX_SYSROOT must be set.)
 endif
 
 
-export XARGO_RUST_SRC := $(PWD)/rust/src
-export XARGO_HOME := $(PWD)/.xargo
 export CARGO_TARGET_DIR := $(PWD)/target
 export RUST_TARGET_PATH := $(PWD)
 export RUST_MINIX_DIR := $(PWD)
@@ -17,33 +15,33 @@ export CC_i586_unknown_minix := i586-elf32-minix-clang
 export AR_i586_unknown_minix := i586-elf32-minix-ar
 
 
-XARGO := $(PWD)/target/release/xargo
-LIBS := deps/pth/lib/libpthread.so
-
-
 all: hello libc-test
 
-hello: $(LIBS) $(XARGO) hello/Xargo.toml
-	cd hello && $(XARGO) build --target i586-unknown-minix
+hello: .cargo/config
+	cd hello && cargo build --target i586-unknown-minix
 
-libc-test: $(LIBS) $(XARGO) libc/libc-test/Xargo.toml
-	cd libc/libc-test && $(XARGO) test --target i586-unknown-minix --no-run
+libc-test: .cargo/config
+	cd libc/libc-test && cargo test --target i586-unknown-minix --no-run
 
 update-submodules:
 	git submodule update --init rust libc xargo
 	git -C rust submodule update --init src/stdsimd
 
 clean:
-	rm -rf .xargo target deps
+	rm -rf .sysroot target deps rust/target
 
-%/Xargo.toml: Xargo.toml
-	cp $< $@
+.cargo/config: libstd
+	mkdir -p .cargo
+	echo "[target.i586-unknown-minix]" > $@
+	echo 'rustflags = ["-L$(PWD)/rust/target/i586-unknown-minix/release/deps"]' >> $@
 
-Xargo.toml: Xargo.toml.in
-	sed "s|LIBC|$(PWD)/libc|" $< > $@
-
-$(XARGO):
-	cd xargo && cargo build --release
+libstd: deps/pth/lib/libpthread.so
+	cd rust/src/libstd && \
+	   env -u CARGO_TARGET_DIR \
+	          RUSTFLAGS='-Z force-unstable-if-unmarked' \
+	   cargo build --target i586-unknown-minix \
+	               --features "panic-unwind backtrace" \
+	               --release
 
 deps/pth/lib/libpthread.so: deps/pth-2.0.7nb4.tgz
 	mkdir -p deps/pth
@@ -53,4 +51,4 @@ deps/pth-2.0.7nb4.tgz:
 	mkdir -p deps
 	cd deps && wget https://minix3.org/pkgsrc/packages/3.4.0/i386/All/pth-2.0.7nb4.tgz
 
-.PHONY: all clean libc-test hello update-submodules $(XARGO)
+.PHONY: all clean libc-test hello update-submodules libstd

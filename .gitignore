@@ -1,6 +1,4 @@
 hello/target
 Cargo.lock
-.xargo
-Xargo.toml
 deps
 target
