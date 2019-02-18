@@ -9,6 +9,7 @@ endif
 
 export XARGO_RUST_SRC := $(PWD)/rust/src
 export XARGO_HOME := $(PWD)/.xargo
+export CARGO_TARGET_DIR := $(PWD)/target
 export RUST_TARGET_PATH := $(PWD)
 export RUST_MINIX_DIR := $(PWD)
 export PATH := $(PWD)/bin:$(MINIX_TOOLDIR)/bin:$(PATH)
@@ -16,7 +17,7 @@ export CC_i586_unknown_minix := i586-elf32-minix-clang
 export AR_i586_unknown_minix := i586-elf32-minix-ar
 
 
-XARGO := $(PWD)/xargo/target/release/xargo
+XARGO := $(PWD)/target/release/xargo
 LIBS := deps/pth/lib/libpthread.so
 
 
@@ -33,7 +34,7 @@ update-submodules:
 	git -C rust submodule update --init src/stdsimd
 
 clean:
-	rm -rf .xargo libc/target hello/target xargo/target deps
+	rm -rf .xargo target deps
 
 %/Xargo.toml: Xargo.toml
 	cp $< $@
