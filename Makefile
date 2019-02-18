@@ -16,16 +16,16 @@ export CC_i586_unknown_minix := i586-elf32-minix-clang
 export AR_i586_unknown_minix := i586-elf32-minix-ar
 
 
-XARGO := rustup run nightly cargo run --manifest-path $(PWD)/xargo/Cargo.toml --
+XARGO := $(PWD)/xargo/target/release/xargo
 LIBS := deps/pth/lib/libpthread.so
 
 
 all: hello libc-test
 
-hello: $(LIBS)
+hello: $(LIBS) $(XARGO)
 	cd hello && $(XARGO) build --target i586-unknown-minix
 
-libc-test: $(LIBS) 
+libc-test: $(LIBS) $(XARGO)
 	cd libc/libc-test && $(XARGO) test --target i586-unknown-minix --no-run
 
 update-submodules:
@@ -35,6 +35,9 @@ update-submodules:
 clean:
 	rm -rf .xargo libc/target hello/target xargo/target deps
 
+$(XARGO):
+	cd xargo && cargo build --release
+
 deps/pth/lib/libpthread.so: deps/pth-2.0.7nb4.tgz
 	mkdir -p deps/pth
 	cd deps/pth && tar xmf ../pth-2.0.7nb4.tgz
@@ -43,4 +46,4 @@ deps/pth-2.0.7nb4.tgz:
 	mkdir -p deps
 	cd deps && wget https://minix3.org/pkgsrc/packages/3.4.0/i386/All/pth-2.0.7nb4.tgz
 
-.PHONY: all clean libc-test hello update-submodules
+.PHONY: all clean libc-test hello update-submodules $(XARGO)
