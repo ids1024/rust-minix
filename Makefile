@@ -28,7 +28,7 @@ update-submodules:
 	git -C rust submodule update --init src/stdsimd
 
 clean:
-	rm -rf .sysroot target deps rust/target
+	rm -rf target deps rust/target
 
 .cargo/config: libstd
 	mkdir -p .cargo

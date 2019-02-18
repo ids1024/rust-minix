@@ -2,3 +2,4 @@ hello/target
 Cargo.lock
 deps
 target
+.cargo/config
