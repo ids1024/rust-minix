@@ -15,10 +15,18 @@ make update-submodules
 make
 
 cargo new --bin hello
-cd hello && ../cargo-minix build --target i586-unknown-minix --release
+cd hello
+../cargo-minix build --target i586-unknown-minix --release
+cd ..
+
+cd libc/libc-test
+../../cargo-minix test --target i586-unknown-minix --no-run
+cd ../..
 
 git clone https://github.com/ids1024/ripgrep -b minix
-cd ripgrep && ../cargo-minix build --target i586-unknown-minix --release
+cd ripgrep
+../cargo-minix build --target i586-unknown-minix --release
+cd ..
 ```
 
 **NOTE**: Using a nightly compiler to build std from a fork of the rust repository, as done here, is not supported and not guaranteed to work, since std depends on unstable features that may change in later compiler versions. But the correct solution requires compiling rustc from the same source tree (while takes a long time and a lot of disk space). So this should be fine, but may break at any time (which is fixed by using an older nightly, or merging upstream into the rust fork).
