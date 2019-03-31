@@ -12,6 +12,7 @@ export RUST_MINIX_DIR := $(PWD)
 export PATH := $(PWD)/bin:$(MINIX_TOOLDIR)/bin:$(PATH)
 export CC_i586_unknown_minix := i586-elf32-minix-clang
 export AR_i586_unknown_minix := i586-elf32-minix-ar
+CARGO := rustup run nightly cargo
 
 
 all: .cargo/config
@@ -32,9 +33,9 @@ libstd: deps/pth/lib/libpthread.so i586-unknown-minix.json
 	cd rust/src/libstd && \
 	   env -u CARGO_TARGET_DIR \
 	          RUSTFLAGS='-Z force-unstable-if-unmarked' \
-	   cargo build --target i586-unknown-minix \
-	               --features "panic-unwind backtrace" \
-	               --release
+	   $(CARGO) build --target i586-unknown-minix \
+	                  --features "panic-unwind backtrace" \
+	                  --release
 
 deps/pth/lib/libpthread.so: deps/pth-2.0.7nb4.tgz
 	mkdir -p deps/pth
