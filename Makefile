@@ -17,8 +17,14 @@ CARGO := rustup run nightly cargo
 
 all: .cargo/config
 
+libc-test: .cargo/config
+	cd libc/libc-test && ../../cargo-minix build --target i586-unknown-minix
+
 clean:
-	rm -rf deps rust/target .cargo
+	rm -rf deps .cargo
+	cd libc && cargo clean
+	cd libc/libc-test && cargo clean
+	cd rust && cargo clean
 
 update-submodules:
 	git submodule update --init rust libc
@@ -45,4 +51,4 @@ deps/pth-2.0.7nb4.tgz:
 	mkdir -p deps
 	cd deps && wget https://minix3.org/pkgsrc/packages/3.4.0/i386/All/pth-2.0.7nb4.tgz
 
-.PHONY: all clean update-submodules libstd
+.PHONY: all clean update-submodules libstd libc-test
