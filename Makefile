@@ -23,7 +23,6 @@ libc-test: .cargo/config
 clean:
 	rm -rf deps .cargo
 	cd libc && cargo clean
-	cd libc/libc-test && cargo clean
 	cd rust && cargo clean
 
 update-submodules:
