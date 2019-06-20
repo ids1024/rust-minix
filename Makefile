@@ -18,7 +18,7 @@ CARGO := rustup run nightly cargo
 all: .cargo/config
 
 libc-test: .cargo/config
-	cd libc/libc-test && ../../cargo-minix build --target i586-unknown-minix
+	cd libc/libc-test && ../../cargo-minix test --target i586-unknown-minix
 
 clean:
 	rm -rf deps .cargo
