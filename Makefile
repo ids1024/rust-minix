@@ -1,18 +1,4 @@
-ifndef MINIX_TOOLDIR
-$(error MINIX_TOOLDIR must be set.)
-endif
-
-ifndef MINIX_SYSROOT
-$(error MINIX_SYSROOT must be set.)
-endif
-
-
-export RUST_TARGET_PATH := $(PWD)
-export RUST_MINIX_DIR := $(PWD)
-export PATH := $(PWD)/bin:$(MINIX_TOOLDIR)/bin:$(PATH)
-export CC_i586_unknown_minix := i586-elf32-minix-clang
-export AR_i586_unknown_minix := i586-elf32-minix-ar
-CARGO := rustup run nightly-2019-06-19 cargo
+CARGO := $(PWD)/cargo-minix
 RUST_RELEASEDIR := rust/target/i586-unknown-minix/release
 
 
