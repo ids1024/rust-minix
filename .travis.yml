@@ -1,7 +1,10 @@
 sudo: required
+git:
+  submodules: false
 
 services:
   - docker
 
 script:
+  - make update-submodules
   - ./build-docker.sh
