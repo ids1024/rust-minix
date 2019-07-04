@@ -43,7 +43,7 @@ deps/lib/libsemaphore.so: deps/pthread-sem-1.0nb2.tgz
 
 deps/%.tgz:
 	mkdir -p deps
-	cd deps && wget https://minix3.org/pkgsrc/packages/3.4.0/i386/All/$(@:deps/%=%)
+	cd deps && curl https://minix3.org/pkgsrc/packages/3.4.0/i386/All/$(@:deps/%=%) -O $@
 
 FORCE: ;
 
