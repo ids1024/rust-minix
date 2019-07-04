@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ids1024/rust-minix.svg?branch=master)](https://travis-ci.org/ids1024/rust-minix)
+
 WIP Port of Rust's std to Minix
 ===============================
 
