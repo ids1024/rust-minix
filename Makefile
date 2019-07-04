@@ -14,7 +14,7 @@ clean:
 
 update-submodules:
 	git submodule update --init rust libc
-	git -C rust submodule update --init src/stdsimd
+	git -C rust submodule update --init src/stdsimd src/tools
 
 .cargo/config: $(RUST_RELEASEDIR)/libstd.rlib
 	mkdir -p .cargo
