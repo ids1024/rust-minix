@@ -21,10 +21,6 @@ cd hello
 ../cargo-minix build --target i586-unknown-minix --release
 cd ..
 
-cd libc/libc-test
-../../cargo-minix test --target i586-unknown-minix --no-run
-cd ../..
-
 git clone https://github.com/ids1024/ripgrep -b minix
 cd ripgrep
 ../cargo-minix build --target i586-unknown-minix --release
