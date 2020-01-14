@@ -3,6 +3,8 @@
 WIP Port of Rust's std to Minix
 ===============================
 
+Some additional information on this port can by found in [my blog post introducing it](https://iandouglasscott.com/2019/02/18/cross-compiling-rust-code-to-minix/).
+
 For the moment, this is set up to allow cross compiling from Linux. Other systems with Rust compiler may work, but are not tested.
 
 `make` is used to build a copy of `std` targeting Minix. Then the `cargo-minix` script can be used instead of cargo to set all the necessary environmental variables so that the `i586-unknown-minix` target and `std` is available.
